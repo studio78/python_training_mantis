@@ -1,8 +1,6 @@
-# from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium import webdriver
 from fixture.session import SessionHelper
-# from fixture.group import GroupHelper
-# from fixture.contact import ContactHelper
+from fixture.project import ProjectHelper
 
 
 class Application:
@@ -20,6 +18,7 @@ class Application:
         # совсем без ожидания нельзя, тесты не проходят
         self.wd.implicitly_wait(1)
         self.session = SessionHelper(self)
+        self.project = ProjectHelper(self)
         self.base_url = base_url
 
     def is_valid(self):
@@ -33,9 +32,9 @@ class Application:
         wd = self.wd
         wd.get(self.base_url)
 
-    def return_to_main_page(self):
-        wd = self.wd
-        wd.find_element_by_link_text("home page").click()
+    # def return_to_main_page(self):
+    #     wd = self.wd
+    #     wd.find_element_by_link_text("home page").click()
 
     def fill_field_by_name(self, name, text):
         wd = self.wd
